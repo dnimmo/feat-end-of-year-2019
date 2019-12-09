@@ -140,7 +140,6 @@ view (DisplayingSlide slide) =
             , row
                 [ width fill
                 , height fill
-                , spacing 20
                 ]
                 [ el
                     [ centerX
