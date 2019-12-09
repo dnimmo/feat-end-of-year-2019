@@ -1,8 +1,11 @@
 module Main exposing (main)
 
 import Browser exposing (sandbox)
-import Element exposing (Element, alignTop, centerX, centerY, column, el, fill, height, maximum, padding, px, row, shrink, text, width)
-import ElementLibrary.Elements exposing (button, globalLayout, heading1, mainContent)
+import Element exposing (Element, alignTop, centerX, centerY, column, el, fill, height, maximum, padding, paddingXY, px, rgb255, row, shrink, spacing, text, width)
+import Element.Background as Background
+import Element.Border as Border
+import Element.Font as Font
+import ElementLibrary.Elements exposing (button, globalLayout, heading1, mainContent, siteHeading)
 import Html exposing (Html)
 import Slides.Introduction as Introduction
 import Slides.WhyWeExist as WhyWeExist
@@ -87,6 +90,19 @@ update (ChangeSlide direction) (DisplayingSlide slide) =
 -- VIEW
 
 
+chooseHeading : Slide -> String
+chooseHeading slide =
+    case slide of
+        Introduction ->
+            Introduction.heading
+
+        WhyWeExist ->
+            WhyWeExist.heading
+
+        _ ->
+            Introduction.heading
+
+
 chooseSlide : Slide -> List (Element Msg)
 chooseSlide slide =
     [ column [ width fill ] <|
@@ -105,28 +121,40 @@ chooseSlide slide =
 view : Model -> Html Msg
 view (DisplayingSlide slide) =
     globalLayout <|
-        row [ centerX, height fill, width fill ]
-            [ column [ width <| maximum 200 fill, padding 20 ] <|
-                case slide of
-                    Introduction ->
-                        []
-
-                    _ ->
-                        [ button "Previous" <| Just <| ChangeSlide Backwards
-                        ]
-            , column [ width fill, centerX, alignTop ]
-                [ heading1
-                    "FEAT's [Insert Pun Here] 2019-2020"
-                , mainContent <| chooseSlide slide
+        column
+            [ width fill
+            ]
+            [ siteHeading <|
+                chooseHeading slide
+            , row
+                [ centerX
+                , height fill
+                , width fill
+                , paddingXY 400 40
                 ]
-            , column [ width <| maximum 200 fill, padding 20 ] <|
-                case slide of
-                    End ->
-                        []
+                [ column [ width fill, centerX, alignTop ]
+                    [ mainContent <| chooseSlide slide
+                    ]
+                ]
+            , row
+                [ width fill
+                , spacing 20
+                ]
+                [ el [ centerX ] <|
+                    case slide of
+                        Introduction ->
+                            Element.none
 
-                    _ ->
-                        [ button "Next" <| Just <| ChangeSlide Forwards
-                        ]
+                        _ ->
+                            button "<" <| Just <| ChangeSlide Backwards
+                , el [ centerX ] <|
+                    case slide of
+                        End ->
+                            Element.none
+
+                        _ ->
+                            button ">" <| Just <| ChangeSlide Forwards
+                ]
             ]
 
 

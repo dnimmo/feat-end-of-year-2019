@@ -1,9 +1,39 @@
-module ElementLibrary.Styles exposing (button, buttonLabel, droppedCapital, global, heading1, heading2, mainContent)
+module ElementLibrary.Styles exposing (button, buttonLabel, droppedCapital, global, heading1, heading2, mainContent, siteHeading)
 
-import Element exposing (alignLeft, alignTop, centerX, centerY, fill, minimum, padding, px, rgb255, spacing, width)
+import Element exposing (alignLeft, alignTop, centerX, centerY, fill, minimum, padding, px, rgb255, rgba255, spacing, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
+
+
+primaryColour =
+    rgb255 137 49 104
+
+
+secondaryColour =
+    rgb255 74 25 66
+
+
+tertiaryColour =
+    rgb255 46 28 43
+
+
+quarternaryColour =
+    rgb255 234 234 234
+
+
+siteHeading =
+    [ Background.color primaryColour
+    , Font.color quarternaryColour
+    , Font.glow tertiaryColour 1
+    , width fill
+    , Border.shadow
+        { offset = ( 0, 0 )
+        , size = 1.0
+        , blur = 3.0
+        , color = quarternaryColour
+        }
+    ]
 
 
 heading1Size =
@@ -15,8 +45,12 @@ heading2Size =
 
 
 global =
-    [ Background.color <| rgb255 63 81 92
-    , Font.color <| rgb255 255 255 255
+    [ Font.color <| quarternaryColour
+    , Font.glow tertiaryColour 1
+    , Background.gradient
+        { angle = 67
+        , steps = [ primaryColour, secondaryColour, tertiaryColour ]
+        }
     ]
 
 
@@ -41,24 +75,29 @@ mainContent =
 
 button =
     [ centerY
-    , Background.color <| rgb255 0 174 255
+    , Background.color tertiaryColour
     , padding 20
-    , width <| px 150
     , Border.rounded 50
+    , width <| px 65
     , Border.solid
-    , Border.color <| rgb255 255 255 255
+    , Border.color <| quarternaryColour
     , Border.width 2
     ]
 
 
 buttonLabel =
-    [ centerX ]
+    [ centerX
+    , Font.color quarternaryColour
+    , Font.bold
+    ]
 
 
 droppedCapital =
     [ alignLeft
-    , padding 20
-    , Font.size 60
+    , padding 10
+    , Font.size 80
     , Font.family [ Font.typeface "Times New Roman" ]
     , Font.bold
+    , Font.color primaryColour
+    , Font.glow quarternaryColour 1
     ]

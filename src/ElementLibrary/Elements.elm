@@ -1,4 +1,4 @@
-module ElementLibrary.Elements exposing (button, globalLayout, heading1, heading2, mainContent, paragraph)
+module ElementLibrary.Elements exposing (button, globalLayout, heading1, heading2, mainContent, paragraph, siteHeading)
 
 import Element exposing (Element, el, layout, row, text)
 import Element.Input as Input
@@ -9,6 +9,14 @@ import Html exposing (Html)
 globalLayout : Element msg -> Html msg
 globalLayout =
     layout Styles.global
+
+
+siteHeading : String -> Element msg
+siteHeading str =
+    el
+        Styles.siteHeading
+    <|
+        heading1 str
 
 
 heading1 : String -> Element msg
