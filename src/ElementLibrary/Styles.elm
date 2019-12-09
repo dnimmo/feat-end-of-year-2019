@@ -1,6 +1,6 @@
-module ElementLibrary.Styles exposing (button, buttonLabel, droppedCapital, global, heading1, heading2, mainContent, siteHeading)
+module ElementLibrary.Styles exposing (button, buttonLabel, disabledButton, droppedCapital, global, heading1, heading2, mainContent, siteHeading)
 
-import Element exposing (alignLeft, alignTop, centerX, centerY, fill, minimum, padding, px, rgb255, rgba255, spacing, width)
+import Element exposing (alignLeft, alignTop, alpha, centerX, centerY, fill, minimum, padding, px, rgb255, rgba255, spacing, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
@@ -83,6 +83,10 @@ button =
     , Border.color <| quarternaryColour
     , Border.width 2
     ]
+
+
+disabledButton =
+    alpha 0.5 :: button
 
 
 buttonLabel =

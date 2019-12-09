@@ -1,4 +1,4 @@
-module ElementLibrary.Elements exposing (button, globalLayout, heading1, heading2, mainContent, paragraph, siteHeading)
+module ElementLibrary.Elements exposing (button, disabledButton, globalLayout, heading1, heading2, mainContent, paragraph, siteHeading)
 
 import Element exposing (Element, el, layout, row, text)
 import Element.Input as Input
@@ -38,6 +38,14 @@ button labelText maybeMsg =
     Input.button Styles.button
         { onPress = maybeMsg
         , label = el Styles.buttonLabel <| text labelText
+        }
+
+
+disabledButton : String -> Element msg
+disabledButton str =
+    Input.button Styles.disabledButton
+        { onPress = Nothing
+        , label = el Styles.buttonLabel <| text str
         }
 
 

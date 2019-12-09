@@ -5,7 +5,7 @@ import Element exposing (Element, alignTop, centerX, centerY, column, el, fill, 
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
-import ElementLibrary.Elements exposing (button, globalLayout, heading1, mainContent, siteHeading)
+import ElementLibrary.Elements exposing (disabledButton, button, globalLayout, heading1, mainContent, siteHeading)
 import Html exposing (Html)
 import Slides.Introduction as Introduction
 import Slides.WhyWeExist as WhyWeExist
@@ -143,14 +143,14 @@ view (DisplayingSlide slide) =
                 [ el [ centerX ] <|
                     case slide of
                         Introduction ->
-                            Element.none
+                            disabledButton "<"
 
                         _ ->
                             button "<" <| Just <| ChangeSlide Backwards
                 , el [ centerX ] <|
                     case slide of
                         End ->
-                            Element.none
+                            disabledButton ">"
 
                         _ ->
                             button ">" <| Just <| ChangeSlide Forwards
