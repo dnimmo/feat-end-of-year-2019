@@ -1,9 +1,8 @@
 module Main exposing (main)
 
 import Browser exposing (sandbox)
-import Element exposing (Element, centerX, column, row, text)
-import Element.Input as Input
-import ElementLibrary.Elements exposing (globalLayout, heading1, mainContent)
+import Element exposing (Element, alignTop, centerX, centerY, column, el, fill, height, maximum, padding, px, row, shrink, text, width)
+import ElementLibrary.Elements exposing (button, globalLayout, heading1, mainContent)
 import Html exposing (Html)
 import Slides.Introduction as Introduction
 import Slides.WhyWeExist as WhyWeExist
@@ -20,6 +19,10 @@ type Model
 type Slide
     = Introduction
     | WhyWeExist
+    | FrontendDevelopment
+    | Concierge
+    | NextYear
+    | End
 
 
 
@@ -39,6 +42,26 @@ update : Msg -> Model -> Model
 update (ChangeSlide direction) (DisplayingSlide slide) =
     DisplayingSlide <|
         case direction of
+            Forwards ->
+                case slide of
+                    Introduction ->
+                        WhyWeExist
+
+                    WhyWeExist ->
+                        FrontendDevelopment
+
+                    FrontendDevelopment ->
+                        Concierge
+
+                    Concierge ->
+                        NextYear
+
+                    NextYear ->
+                        End
+
+                    End ->
+                        End
+
             Backwards ->
                 case slide of
                     Introduction ->
@@ -47,13 +70,17 @@ update (ChangeSlide direction) (DisplayingSlide slide) =
                     WhyWeExist ->
                         Introduction
 
-            Forwards ->
-                case slide of
-                    Introduction ->
+                    FrontendDevelopment ->
                         WhyWeExist
 
-                    WhyWeExist ->
-                        WhyWeExist
+                    Concierge ->
+                        FrontendDevelopment
+
+                    NextYear ->
+                        Concierge
+
+                    End ->
+                        NextYear
 
 
 
@@ -62,31 +89,44 @@ update (ChangeSlide direction) (DisplayingSlide slide) =
 
 chooseSlide : Slide -> List (Element Msg)
 chooseSlide slide =
-    case slide of
-        Introduction ->
-            Introduction.view
+    [ column [ width fill ] <|
+        case slide of
+            Introduction ->
+                Introduction.view
 
-        WhyWeExist ->
-            WhyWeExist.view
+            WhyWeExist ->
+                WhyWeExist.view
+
+            _ ->
+                Introduction.view
+    ]
 
 
 view : Model -> Html Msg
 view (DisplayingSlide slide) =
     globalLayout <|
-        row [ centerX ]
-            [ Input.button []
-                { onPress = Just <| ChangeSlide Backwards
-                , label = text "Previous"
-                }
-            , column [ centerX ]
+        row [ centerX, height fill, width fill ]
+            [ column [ width <| maximum 200 fill, padding 20 ] <|
+                case slide of
+                    Introduction ->
+                        []
+
+                    _ ->
+                        [ button "Previous" <| Just <| ChangeSlide Backwards
+                        ]
+            , column [ width fill, centerX, alignTop ]
                 [ heading1
                     "FEAT's [Insert Pun Here] 2019-2020"
                 , mainContent <| chooseSlide slide
                 ]
-            , Input.button []
-                { onPress = Just <| ChangeSlide Forwards
-                , label = text "Next"
-                }
+            , column [ width <| maximum 200 fill, padding 20 ] <|
+                case slide of
+                    End ->
+                        []
+
+                    _ ->
+                        [ button "Next" <| Just <| ChangeSlide Forwards
+                        ]
             ]
 
 

@@ -1,6 +1,7 @@
-module ElementLibrary.Elements exposing (globalLayout, heading1, heading2, mainContent)
+module ElementLibrary.Elements exposing (button, globalLayout, heading1, heading2, mainContent, paragraph)
 
 import Element exposing (Element, el, layout, row, text)
+import Element.Input as Input
 import ElementLibrary.Styles as Styles
 import Html exposing (Html)
 
@@ -22,3 +23,23 @@ heading2 str =
 
 mainContent =
     row Styles.mainContent
+
+
+button : String -> Maybe msg -> Element msg
+button labelText maybeMsg =
+    Input.button Styles.button
+        { onPress = maybeMsg
+        , label = el Styles.buttonLabel <| text labelText
+        }
+
+
+paragraph : String -> Element msg
+paragraph str =
+    Element.paragraph []
+        [ el
+            Styles.droppedCapital
+          <|
+            text <|
+                String.left 1 str
+        , text <| String.dropLeft 1 str
+        ]

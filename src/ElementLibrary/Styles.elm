@@ -1,7 +1,8 @@
-module ElementLibrary.Styles exposing (global, heading1, heading2, mainContent)
+module ElementLibrary.Styles exposing (button, buttonLabel, droppedCapital, global, heading1, heading2, mainContent)
 
-import Element exposing (centerX, padding, rgb255)
+import Element exposing (alignLeft, alignTop, centerX, centerY, fill, minimum, padding, px, rgb255, spacing, width)
 import Element.Background as Background
+import Element.Border as Border
 import Element.Font as Font
 
 
@@ -14,7 +15,7 @@ heading2Size =
 
 
 global =
-    [ Background.color <| rgb255 0 174 255
+    [ Background.color <| rgb255 63 81 92
     , Font.color <| rgb255 255 255 255
     ]
 
@@ -33,6 +34,31 @@ heading2 =
 
 
 mainContent =
-    [ padding 50
-    , centerX
+    [ centerX
+    , alignTop
+    ]
+
+
+button =
+    [ centerY
+    , Background.color <| rgb255 0 174 255
+    , padding 20
+    , width <| px 150
+    , Border.rounded 50
+    , Border.solid
+    , Border.color <| rgb255 255 255 255
+    , Border.width 2
+    ]
+
+
+buttonLabel =
+    [ centerX ]
+
+
+droppedCapital =
+    [ alignLeft
+    , padding 20
+    , Font.size 60
+    , Font.family [ Font.typeface "Times New Roman" ]
+    , Font.bold
     ]
