@@ -1,11 +1,11 @@
 module Main exposing (main)
 
 import Browser exposing (sandbox)
-import Element exposing (Element, alignTop, centerX, centerY, column, el, fill, height, maximum, padding, paddingXY, px, rgb255, row, shrink, spacing, text, width)
+import Element exposing (Element, alignBottom, alignTop, centerX, centerY, column, el, fill, height, maximum, padding, paddingXY, px, rgb255, row, shrink, spacing, text, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
-import ElementLibrary.Elements exposing (disabledButton, button, globalLayout, heading1, mainContent, siteHeading)
+import ElementLibrary.Elements exposing (button, disabledButton, globalLayout, heading1, mainContent, siteHeading)
 import Html exposing (Html)
 import Slides.Introduction as Introduction
 import Slides.WhyWeExist as WhyWeExist
@@ -123,6 +123,7 @@ view (DisplayingSlide slide) =
     globalLayout <|
         column
             [ width fill
+            , height fill
             ]
             [ siteHeading <|
                 chooseHeading slide
@@ -138,16 +139,27 @@ view (DisplayingSlide slide) =
                 ]
             , row
                 [ width fill
+                , height fill
                 , spacing 20
                 ]
-                [ el [ centerX ] <|
+                [ el
+                    [ centerX
+                    , alignBottom
+                    , padding 30
+                    ]
+                  <|
                     case slide of
                         Introduction ->
                             disabledButton "<"
 
                         _ ->
                             button "<" <| Just <| ChangeSlide Backwards
-                , el [ centerX ] <|
+                , el
+                    [ centerX
+                    , alignBottom
+                    , padding 30
+                    ]
+                  <|
                     case slide of
                         End ->
                             disabledButton ">"
