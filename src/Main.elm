@@ -5,8 +5,10 @@ import Element exposing (Element, alignBottom, alignTop, centerX, column, el, fi
 import ElementLibrary.Elements exposing (button, disabledButton, globalLayout, mainContent, siteHeading)
 import Html exposing (Html)
 import Slides.End as End
+import Slides.FeatIsBorn as FeatIsBorn
 import Slides.Introduction as Introduction
-import Slides.WhyWeExist as WhyWeExist
+import Slides.NoRoom as NoRoom
+import Slides.TheJourney as TheJourney
 
 
 
@@ -19,9 +21,9 @@ type Model
 
 type Slide
     = Introduction
-    | WhyWeExist
-    | FrontendDevelopment
-    | Concierge
+    | TheJourney
+    | NoRoom
+    | FeatIsBorn
     | NextYear
     | End
 
@@ -46,15 +48,15 @@ update (ChangeSlide direction) (DisplayingSlide slide) =
             Forwards ->
                 case slide of
                     Introduction ->
-                        WhyWeExist
+                        TheJourney
 
-                    WhyWeExist ->
-                        FrontendDevelopment
+                    TheJourney ->
+                        NoRoom
 
-                    FrontendDevelopment ->
-                        Concierge
+                    NoRoom ->
+                        FeatIsBorn
 
-                    Concierge ->
+                    FeatIsBorn ->
                         NextYear
 
                     NextYear ->
@@ -68,17 +70,17 @@ update (ChangeSlide direction) (DisplayingSlide slide) =
                     Introduction ->
                         Introduction
 
-                    WhyWeExist ->
+                    TheJourney ->
                         Introduction
 
-                    FrontendDevelopment ->
-                        WhyWeExist
+                    NoRoom ->
+                        TheJourney
 
-                    Concierge ->
-                        FrontendDevelopment
+                    FeatIsBorn ->
+                        NoRoom
 
                     NextYear ->
-                        Concierge
+                        FeatIsBorn
 
                     End ->
                         NextYear
@@ -94,11 +96,14 @@ chooseHeading slide =
         Introduction ->
             Introduction.heading
 
-        WhyWeExist ->
-            WhyWeExist.heading
+        TheJourney ->
+            TheJourney.heading
 
-        End ->
-            End.heading
+        NoRoom ->
+            NoRoom.heading
+
+        FeatIsBorn ->
+            FeatIsBorn.heading
 
         _ ->
             Introduction.heading
@@ -111,8 +116,14 @@ chooseSlide slide =
             Introduction ->
                 Introduction.view
 
-            WhyWeExist ->
-                WhyWeExist.view
+            TheJourney ->
+                TheJourney.view
+
+            NoRoom ->
+                NoRoom.view
+
+            FeatIsBorn ->
+                FeatIsBorn.view
 
             End ->
                 End.view

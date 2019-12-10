@@ -1,6 +1,6 @@
-module ElementLibrary.Styles exposing (button, buttonLabel, disabledButton, droppedCapital, global, heading1, heading2, image, mainContent, siteHeading)
+module ElementLibrary.Styles exposing (button, buttonLabel, disabledButton, droppedCapital, global, heading1, heading2, image, mainContent, paragraph, siteHeading)
 
-import Element exposing (Attribute, Color, alignLeft, alignTop, alpha, centerX, centerY, fill, height, maximum, mouseOver, padding, px, rgb255, width)
+import Element exposing (Attribute, Color, alignLeft, alpha, centerX, centerY, fill, height, maximum, mouseOver, padding, paddingXY, px, rgb255, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
@@ -38,12 +38,18 @@ siteHeading =
         , blur = 3.0
         , color = quarternaryColour
         }
+    , Font.family
+        [ Font.external
+            { url = "https://fonts.googleapis.com/css?family=Cinzel+Decorative&display=swap"
+            , name = "Cinzel Decorative"
+            }
+        ]
     ]
 
 
 heading1Size : Int
 heading1Size =
-    30
+    60
 
 
 heading2Size : Int
@@ -57,8 +63,8 @@ global =
     , Font.glow tertiaryColour 1
     , Font.family
         [ Font.external
-            { url = "https://fonts.googleapis.com/css?family=Slabo+27px&display=swap"
-            , name = "Slabo 27px"
+            { url = "https://fonts.googleapis.com/css?family=Cinzel+Decorative|Philosopher&display=swap"
+            , name = "Philosopher"
             }
         ]
     , Background.gradient
@@ -66,6 +72,11 @@ global =
         , steps = [ primaryColour, secondaryColour, tertiaryColour ]
         }
     ]
+
+
+paragraph : List (Attribute msg)
+paragraph =
+    [ Font.size 50 ]
 
 
 heading1 : List (Attribute msg)
@@ -86,7 +97,7 @@ heading2 =
 mainContent : List (Attribute msg)
 mainContent =
     [ centerX
-    , alignTop
+    , padding 40
     ]
 
 
@@ -129,12 +140,17 @@ buttonLabel =
 droppedCapital : List (Attribute msg)
 droppedCapital =
     [ alignLeft
-    , padding 10
-    , Font.size 80
-    , Font.family [ Font.typeface "Times New Roman" ]
+    , paddingXY 10 0
+    , Font.size 160
     , Font.bold
     , Font.color primaryColour
     , Font.glow quarternaryColour 1
+    , Font.family
+        [ Font.external
+            { url = "https://fonts.googleapis.com/css?family=Cinzel+Decorative&display=swap"
+            , name = "Cinzel Decorative"
+            }
+        ]
     ]
 
 

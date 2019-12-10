@@ -68,7 +68,7 @@ disabledButton str =
 
 paragraph : String -> Element msg
 paragraph str =
-    Element.paragraph []
+    Element.paragraph Styles.paragraph
         [ el
             Styles.droppedCapital
           <|
