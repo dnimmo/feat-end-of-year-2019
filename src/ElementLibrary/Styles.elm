@@ -47,6 +47,12 @@ heading2Size =
 global =
     [ Font.color <| quarternaryColour
     , Font.glow tertiaryColour 1
+    , Font.family
+        [ Font.external
+            { url = "https://fonts.googleapis.com/css?family=Slabo+27px&display=swap"
+            , name = "Slabo 27px"
+            }
+        ]
     , Background.gradient
         { angle = 67
         , steps = [ primaryColour, secondaryColour, tertiaryColour ]
