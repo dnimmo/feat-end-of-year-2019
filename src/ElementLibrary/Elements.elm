@@ -35,7 +35,14 @@ mainContent =
 
 button : String -> Maybe msg -> Element msg
 button labelText maybeMsg =
-    Input.button Styles.button
+    Input.button
+        (case maybeMsg of
+            Just _ ->
+                Styles.button
+
+            Nothing ->
+                Styles.disabledButton
+        )
         { onPress = maybeMsg
         , label = el Styles.buttonLabel <| text labelText
         }
