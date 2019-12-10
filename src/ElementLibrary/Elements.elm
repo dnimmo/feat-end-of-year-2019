@@ -1,6 +1,6 @@
-module ElementLibrary.Elements exposing (button, disabledButton, globalLayout, heading1, heading2, image, mainContent, paragraph, siteHeading)
+module ElementLibrary.Elements exposing (button, disabledButton, globalLayout, heading1, heading2, image, list, mainContent, paragraph, siteHeading)
 
-import Element exposing (Element, el, layout, row, text)
+import Element exposing (Element, column, el, layout, row, text)
 import Element.Input as Input
 import ElementLibrary.Styles as Styles
 import Html exposing (Html)
@@ -76,3 +76,14 @@ paragraph str =
                 String.left 1 str
         , text <| String.dropLeft 1 str
         ]
+
+
+list : List String -> Element msg
+list strings =
+    column Styles.list
+        (strings
+            |> List.indexedMap
+                (\i x ->
+                    el Styles.listItem <| text <| String.fromInt (i + 1) ++ ". " ++ x
+                )
+        )

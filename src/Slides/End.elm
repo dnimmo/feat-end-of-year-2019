@@ -6,7 +6,7 @@ import ElementLibrary.Elements exposing (image)
 
 heading : String
 heading =
-    "The FEAT-signal!"
+    "Merry FEATmas!"
 
 
 view : List (Element msg)

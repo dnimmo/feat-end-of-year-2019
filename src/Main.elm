@@ -4,9 +4,15 @@ import Browser exposing (sandbox)
 import Element exposing (Element, alignBottom, alignTop, centerX, column, el, fill, height, padding, paddingXY, row, width)
 import ElementLibrary.Elements exposing (button, disabledButton, globalLayout, mainContent, siteHeading)
 import Html exposing (Html)
+import Slides.Concierge as Concierge
+import Slides.ConciergeProgress as ConciergeProgress
+import Slides.Documentation as Documentation
 import Slides.End as End
 import Slides.FeatIsBorn as FeatIsBorn
+import Slides.Gifts as Gifts
 import Slides.Introduction as Introduction
+import Slides.NewsSpreads as NewsSpreads
+import Slides.NextYear as NextYear
 import Slides.NoRoom as NoRoom
 import Slides.TheJourney as TheJourney
 
@@ -24,6 +30,11 @@ type Slide
     | TheJourney
     | NoRoom
     | FeatIsBorn
+    | NewsSpreads
+    | Gifts
+    | Concierge
+    | ConciergeProgress
+    | Documentation
     | NextYear
     | End
 
@@ -57,6 +68,21 @@ update (ChangeSlide direction) (DisplayingSlide slide) =
                         FeatIsBorn
 
                     FeatIsBorn ->
+                        NewsSpreads
+
+                    NewsSpreads ->
+                        Gifts
+
+                    Gifts ->
+                        Concierge
+
+                    Concierge ->
+                        ConciergeProgress
+
+                    ConciergeProgress ->
+                        Documentation
+
+                    Documentation ->
                         NextYear
 
                     NextYear ->
@@ -79,8 +105,23 @@ update (ChangeSlide direction) (DisplayingSlide slide) =
                     FeatIsBorn ->
                         NoRoom
 
-                    NextYear ->
+                    NewsSpreads ->
                         FeatIsBorn
+
+                    Gifts ->
+                        NewsSpreads
+
+                    Concierge ->
+                        Gifts
+
+                    ConciergeProgress ->
+                        Concierge
+
+                    Documentation ->
+                        ConciergeProgress
+
+                    NextYear ->
+                        Documentation
 
                     End ->
                         NextYear
@@ -105,8 +146,26 @@ chooseHeading slide =
         FeatIsBorn ->
             FeatIsBorn.heading
 
-        _ ->
-            Introduction.heading
+        NewsSpreads ->
+            NewsSpreads.heading
+
+        Gifts ->
+            Gifts.heading
+
+        Concierge ->
+            Concierge.heading
+
+        ConciergeProgress ->
+            ConciergeProgress.heading
+
+        Documentation ->
+            Documentation.heading
+
+        NextYear ->
+            NextYear.heading
+
+        End ->
+            End.heading
 
 
 chooseSlide : Slide -> List (Element Msg)
@@ -125,11 +184,26 @@ chooseSlide slide =
             FeatIsBorn ->
                 FeatIsBorn.view
 
+            NewsSpreads ->
+                NewsSpreads.view
+
+            Gifts ->
+                Gifts.view
+
+            Concierge ->
+                Concierge.view
+
+            ConciergeProgress ->
+                ConciergeProgress.view
+
+            Documentation ->
+                Documentation.view
+
+            NextYear ->
+                NextYear.view
+
             End ->
                 End.view
-
-            _ ->
-                Introduction.view
     ]
 
 

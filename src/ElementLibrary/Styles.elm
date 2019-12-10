@@ -1,6 +1,6 @@
-module ElementLibrary.Styles exposing (button, buttonLabel, disabledButton, droppedCapital, global, heading1, heading2, image, mainContent, paragraph, siteHeading)
+module ElementLibrary.Styles exposing (button, buttonLabel, disabledButton, droppedCapital, global, heading1, heading2, image, list, listItem, mainContent, paragraph, siteHeading)
 
-import Element exposing (Attribute, Color, alignLeft, alpha, centerX, centerY, fill, height, maximum, mouseOver, padding, paddingXY, px, rgb255, width)
+import Element exposing (Attribute, Color, alignLeft, alpha, centerX, centerY, fill, height, maximum, mouseOver, padding, paddingXY, px, rgb255, spacing, width)
 import Element.Background as Background
 import Element.Border as Border
 import Element.Font as Font
@@ -165,3 +165,16 @@ image =
         , color = tertiaryColour
         }
     ]
+
+
+list : List (Attribute msg)
+list =
+    [ Font.size 40
+    , spacing 20
+    , padding 20
+    ]
+
+
+listItem : List (Attribute msg)
+listItem =
+    []
