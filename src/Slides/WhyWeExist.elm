@@ -1,6 +1,7 @@
 module Slides.WhyWeExist exposing (heading, view)
 
-import Element exposing (Element, text)
+import Element exposing (Element)
+import ElementLibrary.Elements exposing (paragraph)
 
 
 heading : String
@@ -10,4 +11,4 @@ heading =
 
 view : List (Element msg)
 view =
-    [ text "Why we exist" ]
+    [ paragraph "Why we exist" ]

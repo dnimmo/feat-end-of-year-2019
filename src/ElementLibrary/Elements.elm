@@ -1,9 +1,18 @@
-module ElementLibrary.Elements exposing (button, disabledButton, globalLayout, heading1, heading2, mainContent, paragraph, siteHeading)
+module ElementLibrary.Elements exposing (button, disabledButton, globalLayout, heading1, heading2, image, mainContent, paragraph, siteHeading)
 
 import Element exposing (Element, el, layout, row, text)
 import Element.Input as Input
 import ElementLibrary.Styles as Styles
 import Html exposing (Html)
+
+
+image :
+    { description : String
+    , src : String
+    }
+    -> Element msg
+image info =
+    Element.image Styles.image info
 
 
 globalLayout : Element msg -> Html msg
@@ -29,6 +38,7 @@ heading2 str =
     el Styles.heading2 <| text str
 
 
+mainContent : List (Element msg) -> Element msg
 mainContent =
     row Styles.mainContent
 

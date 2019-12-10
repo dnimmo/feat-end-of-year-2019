@@ -1,12 +1,10 @@
 module Main exposing (main)
 
 import Browser exposing (sandbox)
-import Element exposing (Element, alignBottom, alignTop, centerX, centerY, column, el, fill, height, maximum, padding, paddingXY, px, rgb255, row, shrink, spacing, text, width)
-import Element.Background as Background
-import Element.Border as Border
-import Element.Font as Font
-import ElementLibrary.Elements exposing (button, disabledButton, globalLayout, heading1, mainContent, siteHeading)
+import Element exposing (Element, alignBottom, alignTop, centerX, column, el, fill, height, padding, paddingXY, row, width)
+import ElementLibrary.Elements exposing (button, disabledButton, globalLayout, mainContent, siteHeading)
 import Html exposing (Html)
+import Slides.End as End
 import Slides.Introduction as Introduction
 import Slides.WhyWeExist as WhyWeExist
 
@@ -99,6 +97,9 @@ chooseHeading slide =
         WhyWeExist ->
             WhyWeExist.heading
 
+        End ->
+            End.heading
+
         _ ->
             Introduction.heading
 
@@ -112,6 +113,9 @@ chooseSlide slide =
 
             WhyWeExist ->
                 WhyWeExist.view
+
+            End ->
+                End.view
 
             _ ->
                 Introduction.view
